@@ -8,10 +8,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
 </head>
 <body>
-    <div class="container">
-    <h1>Here is where the main content starts</h1>
+    <div class="navbar">
+        <a class="navbar-item" href="/projects">Home</a>
+        <a class="navbar-item" href="/projects/create">Create</a>
     </div>
-    <div class="container">
+
+    <div class="column container">
         @yield('content')
     </div>
 </body>

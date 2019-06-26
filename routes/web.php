@@ -26,6 +26,7 @@ PATCH /projects/1 (update)
 DELETE /projects/1 (destroy)
 */
 
+/*-------REMOVED TO BE REPLACED BY LINE 44--------*/
 //Route::get('/projects', 'ProjectsController@index');
 
 //Route::get('/projects/create', 'ProjectsController@create');
