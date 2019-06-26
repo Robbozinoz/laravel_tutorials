@@ -9,7 +9,6 @@
     <title>Create</title>
 </head>
 <body>
-
     <div class="navbar">
         <a class="navbar-item" href="/projects">Home</a>
         <a class="navbar-item" href="/projects/create">Create</a>
