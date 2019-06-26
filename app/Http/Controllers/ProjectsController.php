@@ -33,7 +33,16 @@ class ProjectsController extends Controller
     public function update(Project $project)
     {
 
-        $project->update(request(['title', 'description']));
+        $project->update(request()->validate([
+            'title' => [
+                'required', 'min:5', 'max:255'
+            ],
+            'description' => [
+                'required', 'min:5', 'max:255'
+            ],
+        ]));
+
+        //USE ---$project->update(request(['title', 'description']));
 
         /*Updated with code line above in shortened array*/
         //$project->title = request('title');
@@ -77,7 +86,27 @@ class ProjectsController extends Controller
 
         //$project->save();
 
-        Project::create(request(['title', 'description']));
+        /*---------USING $ATTRIBUTES TO VALIDATE FORM-------*/
+        //$attributes = request()->validate([
+        //  'title' => [
+        //    'required', 'min:5', 'max:255'
+        //],
+        //'description' => [
+        //  'required', 'min:5', 'max:255'
+        //],
+        //]);
+
+        //Project::create($attributes);
+
+        /*---------------USE INLINE PROJECT CREATE COMMAND--------*/
+        Project::create(request()->validate([
+            'title' => [
+                'required', 'min:5', 'max:255'
+            ],
+            'description' => [
+                'required', 'min:5', 'max:255'
+            ],
+        ]));
 
         //    'title' => request('title'),
 

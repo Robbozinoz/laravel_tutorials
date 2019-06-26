@@ -13,7 +13,7 @@
             <label for="title" class="label">Title</label>
 
             <div class="control">
-                <input type="text" class="input" name="title" placeholder="Title" value="{{ $project->title }}">
+                <input type="text" class="input {{ $errors->has('title') ? 'is-danger' : '' }}" name="title" placeholder="Title" value="{{ $project->title }}">
             </div>
         </div>
 
@@ -30,6 +30,17 @@
             </div>
         </div>
 
+        <!--Error notification on backend validation-->
+        <!--Check for errors-->
+        @if ($errors->any())
+            <div class="notification is-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li> {{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>     
+        @endif
     </form>
     <form method="POST" action="/projects/{{ $project->id }}">
         <div class="field">
