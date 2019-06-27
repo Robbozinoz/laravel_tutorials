@@ -9,7 +9,7 @@
 
     @if ($project->tasks->count())
         @foreach ($project->tasks as $task)
-            <div style="margin-top: 0.5rem;">
+            <div class="box">
                 <form method="POST" action="/tasks/{{ $task->id }}">
                     @method('PATCH')
 
@@ -25,4 +25,26 @@
     @endif
 
    
+    <!--Add a new task-->
+    <form action="/projects/{{ $project->id }}/tasks" method="post" class="box">
+
+        @csrf
+
+        <div class="field">
+            <label for="description" class="label">New task</label>
+
+            <div class="control">
+                <input type="text" class="input {{ $errors->has('description') ? 'is-danger' : '' }}" name="description" placeholder="New task" required>
+            </div>
+        </div>
+        <div class="field">
+            <div class="control">
+                <button type="submit" class="button is-link">Add Task</button>
+            </div>
+        </div>
+
+        <!-- Blade partial for errors-->
+        @include('errors')
+
+    </form>
 @endsection

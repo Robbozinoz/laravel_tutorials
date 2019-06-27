@@ -50,7 +50,7 @@
 
                 @csrf
                 
-                <button type="submit" class="button is-info">Delete project</button>
+                <button type="submit" class="button is-danger">Delete project</button>
             </div>
         </div>
     </form>

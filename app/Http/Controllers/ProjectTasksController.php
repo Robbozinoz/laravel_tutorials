@@ -6,8 +6,30 @@ use Illuminate\Http\Request;
 
 use App\Task;
 
+use App\Project;
+
 class ProjectTasksController extends Controller
 {
+
+    public function store(Project $project)
+    {
+        $attributes = request()->validate(['description' => 'required|min:5']);
+
+        $project->addTask($attributes);
+
+        //Replaced by instance above because of route/model binding
+        //Task::create([
+
+        //  'project_id' => $project->id,
+
+        //'description' => request('description')
+
+        //]);
+
+        return back();
+    }
+
+
     public function update(Task $task)
     {
         $task->update([

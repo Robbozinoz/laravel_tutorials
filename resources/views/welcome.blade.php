@@ -44,6 +44,10 @@
                 text-align: center;
             }
 
+            .links {
+                margin-bottom: 5vh;
+            }
+
             .title {
                 font-size: 84px;
             }
@@ -64,7 +68,9 @@
         </style>
     </head>
     <body>
+
         <div class="flex-center position-ref full-height">
+         
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -80,8 +86,13 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+                <div class="title m-b-md"> John's Links</div>
+                <div class="links">
+                    <a href="/projects">Johns Home</a>
+                    <a href="/projects/create">Johns Create</a>
+                </div>
+                <div>
+                    <h2>Laravel-Links</h2>
                 </div>
 
                 <div class="links">
