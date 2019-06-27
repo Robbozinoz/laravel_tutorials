@@ -45,4 +45,9 @@ Route::resource('projects', 'ProjectsController');
 
 Route::post('/projects/{project}/tasks', 'ProjectTasksController@store');
 
-Route::patch('/tasks/{task}', 'ProjectTasksController@update');
+/*------REMOVED TO USE COMPLETED TASK CONTROLLER AND ROUTE---*/
+//Route::patch('/tasks/{task}', 'ProjectTasksController@update');
+
+Route::post('/completed-tasks/{task}', 'CompletedTaskController@store');
+
+Route::delete('/completed-tasks/{task}', 'CompletedTaskController@destroy');

@@ -32,15 +32,16 @@ class ProjectTasksController extends Controller
 
     public function update(Task $task)
     {
+        /*-----REMOVED SECTION TO USE RESTFUL COMPLETED TASK CONTROLLER AND ROUTE----*/
         /*ORIGINAL Replace with ANY ONE OF 3 OPTIONS below to simplify complete and incomplete method calls*/
         //$task->complete(request()->has('completed'));
 
         /*1st---Straight forward ifelse statement*/
-        if (request()->has('completed')) {
-            $task->complete();
-        } else {
-            $task->incomplete();
-        }
+        //if (request()->has('completed')) {
+        //  $task->complete();
+        //} else {
+        //  $task->incomplete();
+        //}
 
         /*2nd---Ternary approach to the above ifelse*/
         //request()->has('completed') ? $task->complete() : $task->incomplete();
@@ -49,6 +50,7 @@ class ProjectTasksController extends Controller
         //$method = request()->has('completed') ? 'complete' : 'incomplete';
 
         //$task->$method();
+        /*----END OF SECTION-----*/
 
         /*---REPLACE BY ENCAPSULATION IN TASK MODEL---*/
         // $task->update([
