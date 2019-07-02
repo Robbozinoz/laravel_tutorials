@@ -12,7 +12,26 @@
 |
 */
 
+//Removed after testing----use Illuminate\Filesystem\Filesystem;
+
+
+//app()->singleton('App\Example', function () {
+// return new \App\Example;
+
+//dd('called');
+//});
+
+
+app()->singleton('App\Services\Twitter', function () {
+
+    return new  \App\Services\Twitter('kdlshglksuhgksd');
+});
+
 Route::get('/', function () {
+    //
+    dd(app('App\Example'));
+    //dd('called');
+
     return view('welcome');
 });
 
@@ -41,12 +60,12 @@ DELETE /projects/1 (destroy)
 
 //Route::delete('/projects/{project}', 'ProjectsController@destroy');
 
+/*------REMOVED TO USE COMPLETED TASK CONTROLLER AND ROUTE---*/
+//Route::patch('/tasks/{task}', 'ProjectTasksController@update');
+
 Route::resource('projects', 'ProjectsController');
 
 Route::post('/projects/{project}/tasks', 'ProjectTasksController@store');
-
-/*------REMOVED TO USE COMPLETED TASK CONTROLLER AND ROUTE---*/
-//Route::patch('/tasks/{task}', 'ProjectTasksController@update');
 
 Route::post('/completed-tasks/{task}', 'CompletedTaskController@store');
 
