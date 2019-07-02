@@ -74,11 +74,12 @@ class ProjectsController extends Controller
         return redirect('/projects');
     }
 
-    public function show(Project $project, Twitter $twitter)
+    //public function show(Project $project, Twitter $twitter)
+    public function show(Project $project)
     {
-        //$twitter = app('twitter');
+        //$twitter = app('Twitter');
 
-        dd($twitter);
+        //dd($twitter);
 
         return view('projects.show', compact('project'));
     }

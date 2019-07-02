@@ -1,5 +1,8 @@
 <?php
-//use Symfony\Component\Routing\Annotation\Route;
+
+use App\Services\Twitter;
+
+use App\Repositories\UserRepository;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,27 +18,36 @@
 //Removed after testing----use Illuminate\Filesystem\Filesystem;
 
 
+
+//----------------Lesson 20-21---------------------
+//Route::get('/', function (Twitter $twitter) {
+//
+//dd(app('App\Example'));
+//dd(app('foo'));
+//dd($twitter);
+//return view('welcome');
+//});
+
 //app()->singleton('App\Example', function () {
 // return new \App\Example;
-
 //dd('called');
 //});
 
+/*-------API key lesson number 21-------------*/
+//app()->singleton('App\Services\Twitter', function () {
+//return new  \App\Services\Twitter('kdlshglksuhgksd');
+//});
 
-app()->singleton('App\Services\Twitter', function () {
+//-----------------Lesson 22--------------------------------
+Route::get('/', function (UserRepository $users) {
 
-    return new  \App\Services\Twitter('kdlshglksuhgksd');
-});
-
-Route::get('/', function () {
-    //
-    dd(app('App\Example'));
-    //dd('called');
+    dd($users);
 
     return view('welcome');
 });
 
-/*
+
+/*----Early lessons with 7 options routes REST
 GET /projects (index)
 GET /projects/create (create)
 GET /projects/1 (show)
