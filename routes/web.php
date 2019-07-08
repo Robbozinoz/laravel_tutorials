@@ -41,7 +41,7 @@ use App\Repositories\UserRepository;
 //-----------------Lesson 22--------------------------------
 Route::get('/', function (Twitter $twitter) {
 
-    dd($twitter);
+    //dd($twitter);
 
     return view('welcome');
 });
@@ -82,3 +82,7 @@ Route::post('/projects/{project}/tasks', 'ProjectTasksController@store');
 Route::post('/completed-tasks/{task}', 'CompletedTaskController@store');
 
 Route::delete('/completed-tasks/{task}', 'CompletedTaskController@destroy');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

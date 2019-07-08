@@ -14,9 +14,22 @@ use Illuminate\Filesystem\Filesystem;
 
 class ProjectsController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        $projects = Project::all();
+        /*----EAXMPLE HELPERS----
+        auth()->id() //User id number
+
+        auth()->user() //User name returned
+
+        auth()->check() //Boolean----*/
+
+        $projects = Project::where('owner_id', auth()->id())->get();
 
         //return $projects;
 
@@ -96,32 +109,33 @@ class ProjectsController extends Controller
         //$project->save();
 
         /*---------USING $ATTRIBUTES TO VALIDATE FORM-------*/
-        //$attributes = request()->validate([
-        //  'title' => [
-        //    'required', 'min:5', 'max:255'
-        //],
-        //'description' => [
-        //  'required', 'min:5', 'max:255'
-        //],
-        //]);
-
-        //Project::create($attributes);
-
-        /*---------------USE INLINE PROJECT CREATE COMMAND--------*/
-        Project::create(request()->validate([
+        $attributes = request()->validate([
             'title' => [
                 'required', 'min:5', 'max:255'
             ],
             'description' => [
                 'required', 'min:5', 'max:255'
             ],
-        ]));
+        ]);
 
-        //    'title' => request('title'),
+        //Project::create($attributes);
 
-        //    'description' => request('description')
+        /*---------------USE INLINE PROJECT CREATE COMMAND--------*/
+        //Project::create(request()->validate([
+        //'title' => [
+        //  'required', 'min:5', 'max:255'
+        //],
+        //'description' => [
+        //    'required', 'min:5', 'max:255'
+        //  ],
+        //]));
 
-        //]);
+        /*-----Lesson 24 authentication-----*/
+        $attributes['owner_id'] = auth()->id();
+
+        Project::create($attributes);
+
+        //Project::create($attributes + ['owner_id' => auth()->id()]);
 
         return redirect('/projects');
     }
