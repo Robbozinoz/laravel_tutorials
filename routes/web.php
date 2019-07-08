@@ -39,9 +39,9 @@ use App\Repositories\UserRepository;
 //});
 
 //-----------------Lesson 22--------------------------------
-Route::get('/', function (UserRepository $users) {
+Route::get('/', function (Twitter $twitter) {
 
-    dd($users);
+    dd($twitter);
 
     return view('welcome');
 });

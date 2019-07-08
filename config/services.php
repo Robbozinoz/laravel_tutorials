@@ -44,4 +44,10 @@ return [
         ],
     ],
 
+    'twitter' => [
+        //Replace by line below to make dynamic key'key' => 'public-key', 'key' => 'public-key',
+        'key' => env('TWITTER_KEY'),
+        'secret' => env('TWITTER_SECRET')
+    ]
+
 ];

@@ -17,7 +17,9 @@ class SocialServiceProvider extends ServiceProvider
     {
         //lesson code
         $this->app->singleton(Twitter::class, function () {
-            return new Twitter('api-key');
+            //return new Twitter('api-key');
+            /*Lesson 22 setting the env global variable*/
+            return new Twitter(config('services.twitter.secret'));
         });
     }
 
