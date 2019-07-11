@@ -94,6 +94,28 @@ class ProjectsController extends Controller
 
         //dd($twitter);
 
+        //27-Authorisation essentials - replaced with policy class
+        //if ($project->owner_id !== auth()->id()) {
+        //  abort(403);
+        //}
+
+        /*---Helper function----*/
+        //abort_if($project->owner_id !== auth()->id(), 403);
+
+        //Use with owns class in user.php
+        //abort_unless(auth()->user()->owns($project), 403);
+
+
+        /*----Check for policy authroisation----*/
+        $this->authorize('update', $project);
+
+        /*---Gate facade---*/
+        //if (\Gate::denies('update', $project)) {
+        //  abort(403);
+        //}
+
+        //Option 4 abort_if(\Gate::denies('update', $project), 403);
+
         return view('projects.show', compact('project'));
     }
 

@@ -3,6 +3,11 @@
 @section('content')
     <h1 class="title">{{ $project->title }}</h1>
 
+    <!--Conditional use of to allow project update policy to be used-->
+    @can('update', $project)
+        <a href="" class="button is-link">Update</a>
+    @endcan
+
     <div class="content">{{ $project->description }}</div>
 
     <button class="button" style="margin-bottom: 1rem;"><a href="/projects/{{ $project->id }}/edit ">Edit</a></button>

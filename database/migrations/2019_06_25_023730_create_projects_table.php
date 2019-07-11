@@ -15,6 +15,7 @@ class CreateProjectsTable extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->bigIncrements('id');
+            //Used unsignedbigInteger to ensute match with user table is "type"
             $table->unsignedBigInteger('owner_id');
             $table->string('title');
             $table->text('description');
