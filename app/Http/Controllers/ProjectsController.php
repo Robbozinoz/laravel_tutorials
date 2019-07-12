@@ -11,6 +11,7 @@ use App\Services\Twitter;
 use Illuminate\Contracts\View\View;
 
 use Illuminate\Filesystem\Filesystem;
+use App\Mail\ProjectCreated;
 
 class ProjectsController extends Controller
 {
@@ -30,6 +31,14 @@ class ProjectsController extends Controller
         auth()->check() //Boolean----*/
 
         $projects = Project::where('owner_id', auth()->id())->get();
+
+        //For telescope
+        //dump($projects);
+
+        //Cache function
+        cache()->rememberForever('stats', function () {
+            return ['lessons' => 1500, 'hours' => 20000];
+        });
 
         //return $projects;
 
@@ -155,7 +164,11 @@ class ProjectsController extends Controller
         /*-----Lesson 24 authentication-----*/
         $attributes['owner_id'] = auth()->id();
 
-        Project::create($attributes);
+        $project = Project::create($attributes);
+
+        //Test of telescope using mail
+        \Mail::to('example@gmail.com')->send(new ProjectCreated($project));
+
 
         //Project::create($attributes + ['owner_id' => auth()->id()]);
 
