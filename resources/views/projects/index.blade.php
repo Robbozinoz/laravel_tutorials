@@ -25,7 +25,7 @@
     </nav>
     <div>
     <div class="column container"  style="margin: 2rem;">
-        <h1 class ="title">John's Projects</h1>
+        <h1 class ="title">Projects</h1>
 
         <ul style="margin: 2rem;">
             @foreach ($projects as $project)

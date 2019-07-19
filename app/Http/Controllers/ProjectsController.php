@@ -30,6 +30,9 @@ class ProjectsController extends Controller
 
         auth()->check() //Boolean----*/
 
+        /*---Lesson 28 - readability---*/
+        //$projects = auth()->user()->projects;
+
         $projects = Project::where('owner_id', auth()->id())->get();
 
         //For telescope
@@ -43,7 +46,13 @@ class ProjectsController extends Controller
         //return $projects;
 
         //return view('projects.index', ['projects' => $projects]);
-        return view('projects.index', compact('projects'));
+        return view(
+            'projects.index',
+            [
+                'projects' => auth()->user()->projects
+
+            ]
+        );
     }
 
     public function create()
@@ -59,14 +68,7 @@ class ProjectsController extends Controller
     public function update(Project $project)
     {
 
-        $project->update(request()->validate([
-            'title' => [
-                'required', 'min:5', 'max:255'
-            ],
-            'description' => [
-                'required', 'min:5', 'max:255'
-            ],
-        ]));
+        $project->update($this->validateProject());
 
         //USE ---$project->update(request(['title', 'description']));
 
@@ -120,8 +122,8 @@ class ProjectsController extends Controller
 
         /*---Gate facade---*/
         //if (\Gate::denies('update', $project)) {
-        //  abort(403);
-        //}
+        //     abort(403);
+        // }
 
         //Option 4 abort_if(\Gate::denies('update', $project), 403);
 
@@ -139,7 +141,11 @@ class ProjectsController extends Controller
 
         //$project->save();
 
-        /*---------USING $ATTRIBUTES TO VALIDATE FORM-------*/
+
+        /*---change to validateProject method---*/
+        $attributes = $this->validateProject();
+
+        /*Changed to line 153---------USING $ATTRIBUTES TO VALIDATE FORM-------*/
         $attributes = request()->validate([
             'title' => [
                 'required', 'min:5', 'max:255'
@@ -173,5 +179,17 @@ class ProjectsController extends Controller
         //Project::create($attributes + ['owner_id' => auth()->id()]);
 
         return redirect('/projects');
+    }
+
+    protected function validateProject()
+    {
+        return request()->validate([
+            'title' => [
+                'required', 'min:5', 'max:255'
+            ],
+            'description' => [
+                'required', 'min:5', 'max:255'
+            ],
+        ]);
     }
 }

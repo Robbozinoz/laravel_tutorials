@@ -28,9 +28,9 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        /*---Instantiaite gate and allow user id 1 to have update access - lesson 27--*/
-        $gate->before(function ($user) {
-            return $user->id == 1;
-        });
+        /*---Instantiaite gate and allow user id 1 to have update access - this does stop other users from accessing theeir own projectslesson 27--*/
+        //$gate->before(function ($user) {
+        //    return $user->id == 1;
+        //});
     }
 }

@@ -30,17 +30,9 @@
             </div>
         </div>
 
-        <!--Error notification on backend validation-->
-        <!--Check for errors-->
-        @if ($errors->any())
-            <div class="notification is-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li> {{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>     
-        @endif
+        <!-- Blade partial for errors-->
+        @include('errors')
+
     </form>
     <form method="POST" action="/projects/{{ $project->id }}">
         <div class="field">
