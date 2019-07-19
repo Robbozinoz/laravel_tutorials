@@ -173,7 +173,10 @@ class ProjectsController extends Controller
         $project = Project::create($attributes);
 
         //Test of telescope using mail
-        \Mail::to('example@gmail.com')->send(new ProjectCreated($project));
+        //\Mail::to('example@gmail.com')->send(new ProjectCreated($project));
+        \Mail::to($project->owner->email)->send(
+            new ProjectCreated($project)
+        );
 
 
         //Project::create($attributes + ['owner_id' => auth()->id()]);

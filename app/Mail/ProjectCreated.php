@@ -30,6 +30,13 @@ class ProjectCreated extends Mailable
      */
     public function build()
     {
-        return $this->markdown('mail.project-created');
+        //return $this->markdown('mail.project-created');
+        return $this->from('mail@example.com', 'Mailtrap')
+            ->subject('Mailtrap Project Confirmation')
+            ->markdown('mail.project-created')
+            ->with([
+                //'name' => 'New Mailtrap User',
+                'link' => 'https://mailtrap.io/inboxes'
+            ]);
     }
 }
