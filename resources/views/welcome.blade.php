@@ -9,6 +9,9 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
+        <!--Header link for npm run dev stylesheet-->
+        <link rel="stylesheet" type="text/css" href="{{ mix('/css/app.css') }}">
+
         <!-- Styles -->
         <style>
             html, body {
@@ -69,8 +72,10 @@
     </head>
     <body>
 
-        <div class="flex-center position-ref full-height">
-         
+        <div id="app" class="flex-center position-ref full-height">
+            <!--Lesson 34 - Vue component from app.js
+                <example-component></example-component>-->
+
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -85,7 +90,8 @@
                 </div>
             @endif
 
-            <div class="content">
+            <div id="app"class="content">
+                <example-component></example-component>
                 <div class="title m-b-md"> John's Links</div>
                 <div class="links">
                     <a href="/projects">Johns Home</a>
@@ -106,5 +112,6 @@
                 </div>
             </div>
         </div>
+        <script src="{{ mix('/js/app.js') }}"></script>
     </body>
 </html>

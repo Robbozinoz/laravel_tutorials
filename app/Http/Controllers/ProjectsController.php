@@ -13,6 +13,8 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Filesystem\Filesystem;
 use App\Mail\ProjectCreated;
 
+use App\Events\ProjectsCreated;
+
 class ProjectsController extends Controller
 {
 
@@ -145,15 +147,15 @@ class ProjectsController extends Controller
         /*---change to validateProject method---*/
         $attributes = $this->validateProject();
 
-        /*Changed to line 153---------USING $ATTRIBUTES TO VALIDATE FORM-------*/
-        $attributes = request()->validate([
-            'title' => [
-                'required', 'min:5', 'max:255'
-            ],
-            'description' => [
-                'required', 'min:5', 'max:255'
-            ],
-        ]);
+        /*Changed to line 173---------USING $ATTRIBUTES TO VALIDATE FORM-------*/
+        //$attributes = request()->validate([
+        //   'title' => [
+        //      'required', 'min:5', 'max:255'
+        // ],
+        // 'description' => [
+        //    'required', 'min:5', 'max:255'
+        // ],
+        //]);
 
         //Project::create($attributes);
 
@@ -170,13 +172,19 @@ class ProjectsController extends Controller
         /*-----Lesson 24 authentication-----*/
         $attributes['owner_id'] = auth()->id();
 
+        /*---No need for variable---*/
+        //$project = Project::create($attributes);
         $project = Project::create($attributes);
+
+        /*---3rd Option for engaging Mail send when creating a project, Announce the event to the app globally---*/
+        //event(new ProjectsCreated($project));
 
         //Test of telescope using mail
         //\Mail::to('example@gmail.com')->send(new ProjectCreated($project));
-        \Mail::to($project->owner->email)->send(
-            new ProjectCreated($project)
-        );
+        /*---PLaced in to static function inside Project model---*/
+        //\Mail::to($project->owner->email)->send(
+        //   new ProjectCreated($project)
+        //);
 
 
         //Project::create($attributes + ['owner_id' => auth()->id()]);
