@@ -42,4 +42,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function isVerified()
+    {
+        return $this->email_verified_at;
+    }
+
+    public function isNotVerified()
+    {
+        return !$this->email_verified_at;
+    }
 }

@@ -3,6 +3,7 @@
 use App\Services\Twitter;
 
 use App\Repositories\UserRepository;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,13 +40,28 @@ use App\Repositories\UserRepository;
 //});
 
 //-----------------Lesson 22--------------------------------
-Route::get('/', function (Twitter $twitter) {
+//Route::get('/', function (Twitter $twitter) {
 
-    //dd($twitter);
+//dd($twitter);
+
+// return view('welcome');
+//});
+
+//------------------Lesson 36 -----------------------------
+//Not related to project 
+Route::get('/', function (Request $request) {
+
+    //Install value in session variable and method
+    $request->session()->put('foobar', 'baz');
+    //session(['name' => 'JohnRobertson']);
+
+    //Send session value to page
+    return $request->session()->get('fubar', 'foobar default');
 
     return view('welcome');
 });
 
+//-------------END Lesson 36--------------------
 
 /*----Early lessons with 7 options routes REST
 GET /projects (index)
